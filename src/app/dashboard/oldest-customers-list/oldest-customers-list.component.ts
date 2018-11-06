@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../global-services/customer/customer.service';
 import { Customer } from '../../models/customer.model';
 import { AlertService } from '../../global-services/alert/alert.service';
+import { SortPipe } from '../../pipe/sort.pipe';
 
 @Component({
   selector: 'app-oldest-customers-list',

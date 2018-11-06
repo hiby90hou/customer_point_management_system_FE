@@ -11,11 +11,11 @@
     </tr>
   </thead>
   <tbody *ngIf="customers">
-    <tr *ngFor="let customer of customers; let i = index">
-      <td class="d-table-cell">{{customer.custCode}}</td>
-      <td class="d-table-cell">{{customer.first_name}} {{customer.last_name}}</td>
-      <td class="d-table-cell">{{customer.email}}</td>
-      <td class="d-table-cell">{{customer.date_of_birth}}</td>
+    <tr *ngFor="let customer of customers | sortBy: 'last_name' : false; let i = index">
+      <td class="d-table-cell">{{customer['custCode']}}</td>
+      <td class="d-table-cell">{{customer['first_name']}} {{customer['last_name']}}</td>
+      <td class="d-table-cell">{{customer['email']}}</td>
+      <td class="d-table-cell">{{customer['date_of_birth']}}</td>
     </tr>
 
   </tbody>
