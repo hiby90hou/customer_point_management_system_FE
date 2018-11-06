@@ -8,7 +8,8 @@ import { environment } from '../../../environments/environment';
 })
 export class AuthenticationService {
   constructor(private http: HttpClient) { }
-  private headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+  private tokenExpireTime: Date;
+
   login(email: string, password: string) {
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
@@ -24,13 +25,24 @@ export class AuthenticationService {
         if (response && response.access_token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(response.user));
+          localStorage.setItem('access_token', response.access_token);
+          const currentTime = new Date();
+          this.tokenExpireTime = new Date(currentTime.getTime() + 2*3600*1000);
         }
         return response.user;
       }));
   }
 
   logout() {
-    // remove user from local storage to log user out
+    // remove user from local storage to log user outhiby90hou
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('access_token');
+  }
+  isTokenExpired() {
+    if (!this.tokenExpireTime || this.tokenExpireTime < new Date()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -8,13 +8,19 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login-main/login.component';
 import { AlertComponent } from './global-services/alert/alert/alert.component';
 import { SignUpComponent } from './sign-up/sign-up-main/sign-up.component';
+import { DashboardComponent } from './dashboard/dashboard-main/dashboard.component';
+
+import { AuthGuard } from './global-services/auth/authguard.service';
+import { OldestCustomersListComponent } from './dashboard/oldest-customers-list/oldest-customers-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AlertComponent,
-    SignUpComponent
+    SignUpComponent,
+    DashboardComponent,
+    OldestCustomersListComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +30,7 @@ import { SignUpComponent } from './sign-up/sign-up-main/sign-up.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

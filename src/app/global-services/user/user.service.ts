@@ -7,8 +7,6 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-
-
   constructor(private http: HttpClient) { }
 
   register(user: User) {
