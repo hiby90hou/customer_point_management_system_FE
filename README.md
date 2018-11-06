@@ -26,3 +26,4 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 * Add customer royalty points system
 * Add QR code scan system (just like Coles flybuy point)
 * Improve UI design
+* Deploy the website
