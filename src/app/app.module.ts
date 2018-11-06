@@ -12,6 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard-main/dashboard.compone
 
 import { AuthGuard } from './global-services/auth/authguard.service';
 import { OldestCustomersListComponent } from './dashboard/oldest-customers-list/oldest-customers-list.component';
+import { NewCustomerComponent } from './dashboard/new-customer/new-customer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { OldestCustomersListComponent } from './dashboard/oldest-customers-list/
     AlertComponent,
     SignUpComponent,
     DashboardComponent,
-    OldestCustomersListComponent
+    OldestCustomersListComponent,
+    NewCustomerComponent
   ],
   imports: [
     BrowserModule,

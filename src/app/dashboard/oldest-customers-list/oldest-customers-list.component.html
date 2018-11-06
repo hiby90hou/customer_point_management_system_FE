@@ -1,3 +1,22 @@
-<p>
-  oldest-customers-list works!
-</p>
+<h1>
+  5 oldest customers:
+</h1>
+<table class="table table-striped">
+  <thead>
+    <tr class="d-none d-md-table-row">
+      <th scope="col">CustCode</th>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">DOB</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="customers">
+    <tr *ngFor="let customer of customers; let i = index">
+      <td class="d-table-cell">{{customer.custCode}}</td>
+      <td class="d-table-cell">{{customer.first_name}} {{customer.last_name}}</td>
+      <td class="d-table-cell">{{customer.email}}</td>
+      <td class="d-table-cell">{{customer.date_of_birth}}</td>
+    </tr>
+
+  </tbody>
+</table>
