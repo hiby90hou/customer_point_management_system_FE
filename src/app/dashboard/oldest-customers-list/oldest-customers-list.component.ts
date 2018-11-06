@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../global-services/customer/customer.service';
 import { Customer } from '../../models/customer.model';
 import { AlertService } from '../../global-services/alert/alert.service';
-import { SortPipe } from '../../pipe/sort.pipe';
 
 @Component({
   selector: 'app-oldest-customers-list',
@@ -10,19 +9,30 @@ import { SortPipe } from '../../pipe/sort.pipe';
   styleUrls: ['./oldest-customers-list.component.scss']
 })
 export class OldestCustomersListComponent implements OnInit {
+  
   public customers: Array<Customer>;
+  public loading: boolean = false;
+
   constructor(
     private customerService: CustomerService,
     private alertService: AlertService
   ) { }
 
   ngOnInit() {
-    this.customerService.getOldestCustomersList().subscribe((data)=>{
-      this.customers = data;
-    },
-    (error)=>{
-      this.alertService.error(error.message);
-    }
+    this.getCustomersList();
+  }
+
+  getCustomersList() {
+    this.loading = true;
+    this.customerService.getOldestCustomersList().subscribe(
+      (data) => {
+        this.customers = data;
+        this.loading = false;
+      },
+      (error) => {
+        this.alertService.error(error.message);
+        this.loading = false;
+      }
     )
   }
 

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomerService } from '../../global-services/customer/customer.service';
-import { Customer } from '../../models/customer.model';
 import { AlertService } from '../../global-services/alert/alert.service';
-
+import { Customer } from '../../models/customer.model';
+import { OldestCustomersListComponent } from '../oldest-customers-list/oldest-customers-list.component';
 @Component({
   selector: 'app-new-customer',
   templateUrl: './new-customer.component.html',
@@ -11,10 +11,12 @@ import { AlertService } from '../../global-services/alert/alert.service';
 })
 export class NewCustomerComponent implements OnInit {
 
-  newCustomerForm: FormGroup;
-  loading = false;
-  submitted = false;
-  returnUrl: string;
+  public newCustomerForm: FormGroup;
+  public loading = false;
+  public submitted = false;
+  public returnUrl: string;
+
+  @Input() oldestCustomerList: OldestCustomersListComponent;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -56,21 +58,14 @@ export class NewCustomerComponent implements OnInit {
     this.customerService.create(newCustomer).subscribe(
       (data)=>{
         this.alertService.success("create new customers")
+        this.loading = false;
+        this.oldestCustomerList.getCustomersList();
+        this.newCustomerForm.reset();
       },
       (error)=>{
         this.alertService.error(error.message);
-      })
-    // this.authenticationService.login(this.f.email.value, this.f.password.value)
-    //   .pipe(first())
-    //   .subscribe(
-    //     data => {
-    //       this.router.navigate([this.returnUrl]);
-    //     },
-    //     error => {
-    //       this.alertService.error(error);
-    //       this.loading = false;
-    //     });
-    
+        this.loading = false;
+      })    
   }
 }
 
