@@ -1,2 +1,5 @@
-<app-oldest-customers-list #oldestCustomerList></app-oldest-customers-list>
-<app-new-customer [oldestCustomerList]="oldestCustomerList"></app-new-customer>
+<div class="big-container d-flex justify-content-center flex-column">
+  <app-nav-bar></app-nav-bar>
+  <app-oldest-customers-list #oldestCustomerList></app-oldest-customers-list>
+  <app-new-customer [oldestCustomerList]="oldestCustomerList"></app-new-customer>
+</div>

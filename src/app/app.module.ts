@@ -14,6 +14,7 @@ import { AuthGuard } from './global-services/auth/authguard.service';
 import { OldestCustomersListComponent } from './dashboard/oldest-customers-list/oldest-customers-list.component';
 import { NewCustomerComponent } from './dashboard/new-customer/new-customer.component';
 import { SortPipe } from './pipe/sort.pipe';
+import { NavBarComponent } from './dashboard/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SortPipe } from './pipe/sort.pipe';
     DashboardComponent,
     OldestCustomersListComponent,
     NewCustomerComponent,
-    SortPipe
+    SortPipe,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,

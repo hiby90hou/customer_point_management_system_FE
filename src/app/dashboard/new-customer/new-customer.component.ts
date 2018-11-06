@@ -60,6 +60,9 @@ export class NewCustomerComponent implements OnInit {
         this.alertService.success("create new customers")
         this.loading = false;
         this.oldestCustomerList.getCustomersList();
+
+        // reset
+        this.submitted = false;
         this.newCustomerForm.reset();
       },
       (error)=>{

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
@@ -7,7 +8,10 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private _router: Router
+    ) { }
   private tokenExpireTime: Date;
 
   login(email: string, password: string) {
@@ -37,6 +41,7 @@ export class AuthenticationService {
     // remove user from local storage to log user outhiby90hou
     localStorage.removeItem('currentUser');
     localStorage.removeItem('access_token');
+    this._router.navigate(['/login']);
   }
   isTokenExpired() {
     if (!this.tokenExpireTime || this.tokenExpireTime < new Date()) {
